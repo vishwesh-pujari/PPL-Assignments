@@ -1,0 +1,46 @@
+
+;; Function main (main, funcdef_no=13, decl_uid=2238, cgraph_uid=14, symbol_order=13)
+
+;; 2 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2 3 4 5
+;;
+;; Loop 1
+;;  header 4, latch 3
+;;  depth 1, outer 0
+;;  nodes: 4 3
+;; 2 succs { 4 }
+;; 3 succs { 4 }
+;; 4 succs { 3 5 }
+;; 5 succs { 1 }
+main ()
+{
+  int b;
+  int a;
+
+  <bb 2> :
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  b_9 = b_3 * 2;
+  a_11 = a_1 + 1;
+
+  <bb 4> :
+  # a_1 = PHI <4(2), a_11(3)>
+  # b_3 = PHI <b_5(D)(2), b_9(3)>
+  if (a_1 != 100)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  # b_8 = PHI <b_3(4)>
+  printf ("%d%d", 100, b_8);
+  return 0;
+
+}
+
+

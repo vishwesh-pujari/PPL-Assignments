@@ -1,0 +1,23 @@
+---------------------
+B-1 Function Inlining
+---------------------
+
+---------
+Questions
+---------
+
+Q1) The body of AddTwo(x) seems to be inlined into the call of main rendering the function 
+      useless (nobody else is calling it). Then why is the definition of AddTwo(x) still there all 
+      the way till the last pass (B-1.c.*.optimized)?
+
+A1)    The body of AddTwo(x) cannot be discarded, because it may be called from another
+         translation unit. Translation unit is the ultimate input to the compiler i.e after
+         the file is passed into the pre-processor, the output from the pre-processor is 
+         passed to the compiler.
+--------------------------------------------------------------------------------------------------
+
+Q2) Is there any way to get rid of it?
+
+A2)    By adding the static keyword before the function declaration, we can get rid of the 
+         function declaration in the .optimised file.
+--------------------------------------------------------------------------------------------------

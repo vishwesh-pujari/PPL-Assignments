@@ -1,0 +1,31 @@
+-----------------------
+A-4 Arrays and Pointers
+-----------------------
+
+---------
+Questions
+---------
+
+Q1) How is array declaration and initialization handled?
+
+A1)    I) Even if inside the Source code, array declaration and initialization is done on the same
+            line, inside the .cfg file, first the array is declared along with other 
+            variables in the program. The array initialization is done afterwards. Each element
+            inside the array is initalized on seperate lines according to the index.
+---------------------------------------------------------------------------------------------------
+
+Q2) Why does the statement a[i] = b[i] get broken down to two steps with an intermediate temporary?
+
+A2)    I) a[i] actually means *(a + i). This is because a is actually a pointer. So the above
+            statement can be written as *(a + i) = *(b + i). Hence as now this statement
+            involves sub-expressions, temporary variables are introduced.
+            Also in many architectures only one memory operation per instruction is 
+            permitted.
+---------------------------------------------------------------------------------------------------
+
+Q3) Why are there CLOBBER statements at the end?
+
+A3)    Clobbering a computer memory means overwriting its contents. After clobbering is done
+         the memory allocated to the pointer is cleared and the variable can no longer be used.
+         This marks the arrays as invalid at scope exit and permits reuse of stack slots.
+---------------------------------------------------------------------------------------------------

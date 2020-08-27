@@ -1,0 +1,41 @@
+---------
+A-3 Loops
+---------
+
+---------
+Questions
+---------
+
+Q1) Identify the basic blocks that correspond to the while loop. How is the GIMPLE for a while 
+      loop different from simple if-else jumps?
+
+A1)   I) <bb 4> : Checking condition for the while loop.
+         <bb 3> : Body of the while loop.
+
+      II) In if-else jumps, all goto jumps are conditional. But in the while loop after <bb 2>
+            we have an unconditional goto to <bb 4> to avoid iteration without checking the 
+            condition. Also in a while loop the jump is performed to the label declared before the 
+            if-else blocks and sometimes to the label declared after the if-else blocks. This is not 
+            the case in if-else jumps.
+-------------------------------------------------------------------------------------------------
+
+Q2) Identify the basic blocks for the nested for-loop. You should be able to identify  
+      intializers, conditions and increments for each loop as well as the shared inner body. Is 
+      there really anything special about a for-loop as compared to a while-loop?
+
+A2)   I) <bb 5>  : initialization of counter variable for outer for-loop. (i)
+         <bb 10> : checking condition for outer for-loop.
+         <bb 6>  : initialization of counter variable for inner for-loop. (j)
+         <bb 8>  : checking condition for inner for-loop.
+         <bb 7>  : Body of inner for loop and incrementing of j.  
+         <bb 9>  : incrementing of i.    
+        
+         As compared to a while loop, the for loop is not much different. The only major 
+            difference is that the beginning of a for loop will begin with the 
+            initialization of the counter variable. This may or may not be the case with
+            while loops.
+
+      II) The structure of for-loop and while loop inside GIMPLE are the same. 
+-------------------------------------------------------------------------------------------------
+        
+        

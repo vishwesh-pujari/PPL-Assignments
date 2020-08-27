@@ -1,0 +1,25 @@
+main ()
+gimple_bind <
+  int a;
+  int b;
+  int c;
+  int p;
+  int q;
+  double r;
+
+  gimple_assign <integer_cst, p, 6, NULL, NULL>
+  gimple_assign <integer_cst, a, 10, NULL, NULL>
+  gimple_assign <integer_cst, b, 20, NULL, NULL>
+  gimple_assign <mult_expr, _1, a, b, NULL>
+  gimple_assign <plus_expr, c, _1, 25, NULL>
+  gimple_assign <integer_cst, p, 6, NULL, NULL>
+  gimple_assign <var_decl, q, Z, NULL, NULL>
+  gimple_assign <real_cst, r, 3.45e+1, NULL, NULL>
+  gimple_assign <fix_trunc_expr, _2, r, NULL, NULL>
+  gimple_assign <ssa_name, Z, _2, NULL, NULL>
+  gimple_assign <var_decl, Z.0_3, Z, NULL, NULL>
+  gimple_assign <plus_expr, _4, Z.0_3, 1, NULL>
+  gimple_assign <ssa_name, Z, _4, NULL, NULL>
+>
+
+

@@ -1,0 +1,59 @@
+----------------------------------------------
+A-1 Declarations, Expressions, and Assignments
+----------------------------------------------
+
+---------
+Questions
+---------
+
+--------------------------------------------------------------------------------------------------
+Q1) How do the declarations look in the GIMPLE? Specifically, what happens to multiple variables 
+      declared and initialized on the same line? What happens to global declaration [int Z]?
+
+A1) I)    Variables are declared on seperate lines one after another in the GIMPLE.
+    
+    II)   Multiple variables which are declared and initialized on the same line in the source code 
+            are also declared on seperate lines in the GIMPLE. 
+    
+    III)  Global Variables are not declared in the GIMPLE.
+--------------------------------------------------------------------------------------------------
+
+Q2) How are complex expressions such as [c = a * b + 25] broken down? Can you determine a rule as 
+      to when temporary variables will be introduced?
+
+A2) I)    The expression (a * b) is first evaluated and stored in a temporary variable "_1". Then
+            _1 is added to 25 to get c.
+    
+    II)   Whenever we have complex expressions consisting of many operators, then the complex 
+            expression is broken down into constituent simpler expressions. Each simple expression
+            is evaluated and it's result is stored into temporary variables.
+--------------------------------------------------------------------------------------------------
+
+Q3) How are floats/doubles represented in GIMPLE? What happens when float/double is assigned to an 
+      integer in [Z = r]?
+
+A3) I)    Floats/Doubles are represented in the scientific notation in GIMPLE. For eg 34.5 is 
+            represented as 3.45e+1. This basically means (3.45 * 10^1).
+    
+    II)   When float/double is being assigned to an integer then first that float/double value
+            is type-casted to an integer and stored in another temporary variable (here _2). And 
+            afterwards this temporary variable is assigned to integer variable.
+--------------------------------------------------------------------------------------------------
+
+Q4) How are reads/writes to the global variable Z performed? Why is there a temporary introduced for 
+      the statement [Z = Z + 1] but not for the statements [q = Z] or [Z = p]?
+
+A4) I)    When a local variable is being assigned the value of global variable Z (q = Z) then 
+            this is directly done without the help of any temporary variable, i.e the value of
+            global variable Z is read directly. Or if we have a local variable p whose value is to
+            be assigned to Z, then also it is done directly i.e Z is written directly.
+
+    II)   When the value of Z is being modified and when it is being assigned to other 
+            local/global variable, then temporary variables(Z.0_3) are created and operations are 
+            performed on those temporary variables. The result of operations is stored in 
+            another temporary variable (_4) and then this value is assigned to Z.
+            So if a single value is being assigned to Global variable or Value of Global variable
+            is assigned to another variable, then in that case temporaries are not introduced.
+            The computation Z+1 cannot be written directly to a memory location.
+--------------------------------------------------------------------------------------------------
+

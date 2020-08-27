@@ -1,0 +1,21 @@
+main ()
+{
+  int iftmp.0;
+  int a;
+  int b;
+  int max;
+
+  a = 10;
+  b = 5;
+  _1 = b * 2;
+  if (a > _1) goto <D.1506>; else goto <D.1507>;
+  <D.1506>:
+  iftmp.0 = a;
+  goto <D.1508>;
+  <D.1507>:
+  iftmp.0 = b;
+  <D.1508>:
+  max = iftmp.0;
+}
+
+

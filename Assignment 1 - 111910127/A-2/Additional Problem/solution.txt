@@ -1,0 +1,10 @@
+------------------
+Additional Problem
+------------------
+
+Q) Try to figure out how GCC handles the ternary operator [a ? b : c] in GIMPLE.
+
+A) Even if Ternary operator is written in the source code, compiler converts it into the
+    corresponding if-else basic blocks and then evaluates it. In the end the control will reach
+    the common basic block i.e. <bb 5> where the assignment of max will take place. The value
+    will be stored in iftmp.0

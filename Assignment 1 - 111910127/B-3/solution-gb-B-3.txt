@@ -1,0 +1,13 @@
+---------------------------
+B-3 Value Range Propagation
+---------------------------
+
+---------
+Questions
+---------
+
+Q1) In the file B-3.c, what values can variable `a' take? Will the `if' condition [a  < 4] ever be 
+      true? Inspect the file B-3.c.*.vrp1 to analyze the dump.
+
+A1)    The variable a can take values from 4 to 100. The condition [a < 4] will never become
+        true. The code in the if branch is eliminated in the .vrp1 file.

@@ -1,0 +1,34 @@
+---------------------------------------------
+A-2 Conditional Jumps and Control Flow Graphs
+---------------------------------------------
+
+---------
+Questions
+---------
+
+Q1) How have if-blocks been translated into GIMPLE statements? Can you differentiate between 
+      conditional and unconditional gotos?
+
+A1) I)    In GIMPLE, inside the if-else blocks we have goto statements. Some temporary lables are 
+            introduced eg. goto <D.1506>. And the code which is written under the <D.1506> label 
+            will be the code under if/else block. Depending upon whether the condition is 
+            true/false, the control of program will jump to the respective label due to the goto 
+            statement.
+    
+    II)   If a goto statement is mentioned inside a if/else block then it will be evaluated 
+            depending upon the condition. These are called as conditional gotos. The goto statement
+            which will be executed always and doesn't depend upon any condition is called as 
+            unconditional gotos.
+--------------------------------------------------------------------------------------------------------------
+
+Q2) Repeat the above compilation, but now asking for another dump that of the pass "cfg". View this 
+      pass and say whether this representation makes it easier to read and understand GIMPLEs. 
+      Draw the control-flow graph of the program A-2.c on a piece of paper by looking at the CFG 
+      dump.
+
+A2) I)    The "cfg" representation i.e the CFG dump makes it easier to understand and read GIMPLEs.
+            In the CFG dump, bb means basic block.
+
+    II)   The control-flow graph is provided in the given A-2 Folder.
+--------------------------------------------------------------------------------------------------------------    
+

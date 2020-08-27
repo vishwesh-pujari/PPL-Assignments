@@ -1,0 +1,29 @@
+------------------------------------
+B-4 Common Subexpression Elimination
+------------------------------------
+
+---------
+Questions
+---------
+
+Q1) How many times is the expression (a + c) computed in the original code (as seen in the SSA pass)
+      ? What about after the FRE pass?
+
+A1)    I) The expression (a + c) is computed 2 times in the SSA pass. This is redundancy.
+
+      II) In the FRE pass, the expression (a + c) is evaluated only once.
+---------------------------------------------------------------------------------------------------
+
+Q2) Have there been any more optimizations after FRE? How will you check?
+
+A2)     B-4.c.*.optimized is the final file after optimisation. No more optimisations are made
+          after the .optimzed file. In the B-4.c.*.optimized file also the expression (a + c) is
+          calculated only once, i.e there is no redundancy.
+
+---------------------------------------------------------------------------------------------------
+
+Q3)  Why did we have to put a "return b" in this assignment? What if "return b" is changed to 
+      "return 0"? Will it make any difference?
+
+A3)    If we replace "return b" with "return 0" then also it won't make any difference.
+---------------------------------------------------------------------------------------------------

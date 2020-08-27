@@ -1,0 +1,31 @@
+
+;; Function main (main, funcdef_no=13, decl_uid=2238, cgraph_uid=14, symbol_order=13) (executed once)
+
+main ()
+{
+  int b;
+  int a;
+
+  <bb 2> [local count: 11059540]:
+  goto <bb 4>; [100.00%]
+
+  <bb 3> [local count: 1062682284]:
+  b_7 = b_2 * 2;
+  a_8 = a_1 + 1;
+
+  <bb 4> [local count: 1073741824]:
+  # a_1 = PHI <4(2), a_8(3)>
+  # b_2 = PHI <b_3(D)(2), b_7(3)>
+  if (a_1 != 100)
+    goto <bb 3>; [98.97%]
+  else
+    goto <bb 5>; [1.03%]
+
+  <bb 5> [local count: 11059541]:
+  # b_6 = PHI <b_2(4)>
+  printf ("%d%d", 100, b_6);
+  return 0;
+
+}
+
+
