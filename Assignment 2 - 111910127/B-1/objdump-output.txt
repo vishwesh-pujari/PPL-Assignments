@@ -1,0 +1,61 @@
+1) objdump -l -d -r B-1.o :
+----------------------------------------------------------------
+B-1.o:     file format pe-i386
+
+
+Disassembly of section .text:
+
+00000000 <_AddTwo>:
+   0:	55                   	push   %ebp
+   1:	89 e5                	mov    %esp,%ebp
+   3:	83 45 08 02          	addl   $0x2,0x8(%ebp)
+   7:	8b 45 08             	mov    0x8(%ebp),%eax
+   a:	5d                   	pop    %ebp
+   b:	c3                   	ret    
+
+0000000c <_main>:
+   c:	55                   	push   %ebp
+   d:	89 e5                	mov    %esp,%ebp
+   f:	83 e4 f0             	and    $0xfffffff0,%esp
+  12:	83 ec 20             	sub    $0x20,%esp
+  15:	e8 00 00 00 00       	call   1a <_main+0xe>
+			16: DISP32	___main
+  1a:	c7 44 24 1c 03 00 00 	movl   $0x3,0x1c(%esp)
+  21:	00 
+  22:	8b 44 24 1c          	mov    0x1c(%esp),%eax
+  26:	89 04 24             	mov    %eax,(%esp)
+  29:	e8 d2 ff ff ff       	call   0 <_AddTwo>
+  2e:	89 44 24 1c          	mov    %eax,0x1c(%esp)
+  32:	8b 44 24 1c          	mov    0x1c(%esp),%eax
+  36:	c9                   	leave  
+  37:	c3                   	ret    
+===============================================================
+
+2) objdump --prefix-addresses -l -d -r B-1.o
+--------------------------------------------------------------
+
+B-1.o:     file format pe-i386
+
+
+Disassembly of section .text:
+00000000 <_AddTwo> push   %ebp
+00000001 <_AddTwo+0x1> mov    %esp,%ebp
+00000003 <_AddTwo+0x3> addl   $0x2,0x8(%ebp)
+00000007 <_AddTwo+0x7> mov    0x8(%ebp),%eax
+0000000a <_AddTwo+0xa> pop    %ebp
+0000000b <_AddTwo+0xb> ret    
+0000000c <_main> push   %ebp
+0000000d <_main+0x1> mov    %esp,%ebp
+0000000f <_main+0x3> and    $0xfffffff0,%esp
+00000012 <_main+0x6> sub    $0x20,%esp
+00000015 <_main+0x9> call   0000001a <_main+0xe>
+			16: DISP32	___main
+0000001a <_main+0xe> movl   $0x3,0x1c(%esp)
+00000022 <_main+0x16> mov    0x1c(%esp),%eax
+00000026 <_main+0x1a> mov    %eax,(%esp)
+00000029 <_main+0x1d> call   00000000 <_AddTwo>
+0000002e <_main+0x22> mov    %eax,0x1c(%esp)
+00000032 <_main+0x26> mov    0x1c(%esp),%eax
+00000036 <_main+0x2a> leave  
+00000037 <_main+0x2b> ret    
+===============================================================

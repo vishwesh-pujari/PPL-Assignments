@@ -1,0 +1,80 @@
+1) objdump -l -d -r B-3.o :
+----------------------------------------------------------------
+
+B-3.o:     file format pe-i386
+
+
+Disassembly of section .text:
+
+00000000 <_main>:
+   0:	55                   	push   %ebp
+   1:	89 e5                	mov    %esp,%ebp
+   3:	83 e4 f0             	and    $0xfffffff0,%esp
+   6:	83 ec 20             	sub    $0x20,%esp
+   9:	e8 00 00 00 00       	call   e <_main+0xe>
+			a: DISP32	___main
+   e:	c7 44 24 1c 04 00 00 	movl   $0x4,0x1c(%esp)
+  15:	00 
+  16:	eb 17                	jmp    2f <_main+0x2f>
+  18:	83 7c 24 1c 03       	cmpl   $0x3,0x1c(%esp)
+  1d:	7f 07                	jg     26 <_main+0x26>
+  1f:	83 44 24 18 02       	addl   $0x2,0x18(%esp)
+  24:	eb 04                	jmp    2a <_main+0x2a>
+  26:	d1 64 24 18          	shll   0x18(%esp)
+  2a:	83 44 24 1c 01       	addl   $0x1,0x1c(%esp)
+  2f:	83 7c 24 1c 63       	cmpl   $0x63,0x1c(%esp)
+  34:	7e e2                	jle    18 <_main+0x18>
+  36:	8b 44 24 18          	mov    0x18(%esp),%eax
+  3a:	89 44 24 08          	mov    %eax,0x8(%esp)
+  3e:	8b 44 24 1c          	mov    0x1c(%esp),%eax
+  42:	89 44 24 04          	mov    %eax,0x4(%esp)
+  46:	c7 04 24 00 00 00 00 	movl   $0x0,(%esp)
+			49: dir32	.rdata
+  4d:	e8 00 00 00 00       	call   52 <_main+0x52>
+			4e: DISP32	_printf
+  52:	b8 00 00 00 00       	mov    $0x0,%eax
+  57:	c9                   	leave  
+  58:	c3                   	ret    
+  59:	90                   	nop
+  5a:	90                   	nop
+  5b:	90                   	nop
+===============================================================
+
+2) objdump --prefix-addresses -l -d -r B-3.o
+----------------------------------------------------------------
+
+B-3.o:     file format pe-i386
+
+
+Disassembly of section .text:
+00000000 <_main> push   %ebp
+00000001 <_main+0x1> mov    %esp,%ebp
+00000003 <_main+0x3> and    $0xfffffff0,%esp
+00000006 <_main+0x6> sub    $0x20,%esp
+00000009 <_main+0x9> call   0000000e <_main+0xe>
+			a: DISP32	___main
+0000000e <_main+0xe> movl   $0x4,0x1c(%esp)
+00000016 <_main+0x16> jmp    0000002f <_main+0x2f>
+00000018 <_main+0x18> cmpl   $0x3,0x1c(%esp)
+0000001d <_main+0x1d> jg     00000026 <_main+0x26>
+0000001f <_main+0x1f> addl   $0x2,0x18(%esp)
+00000024 <_main+0x24> jmp    0000002a <_main+0x2a>
+00000026 <_main+0x26> shll   0x18(%esp)
+0000002a <_main+0x2a> addl   $0x1,0x1c(%esp)
+0000002f <_main+0x2f> cmpl   $0x63,0x1c(%esp)
+00000034 <_main+0x34> jle    00000018 <_main+0x18>
+00000036 <_main+0x36> mov    0x18(%esp),%eax
+0000003a <_main+0x3a> mov    %eax,0x8(%esp)
+0000003e <_main+0x3e> mov    0x1c(%esp),%eax
+00000042 <_main+0x42> mov    %eax,0x4(%esp)
+00000046 <_main+0x46> movl   $0x0,(%esp)
+			49: dir32	.rdata
+0000004d <_main+0x4d> call   00000052 <_main+0x52>
+			4e: DISP32	_printf
+00000052 <_main+0x52> mov    $0x0,%eax
+00000057 <_main+0x57> leave  
+00000058 <_main+0x58> ret    
+00000059 <_main+0x59> nop
+0000005a <_main+0x5a> nop
+0000005b <_main+0x5b> nop
+===============================================================
